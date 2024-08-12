@@ -18,8 +18,51 @@
 
 // reactstrap components
 import { Card, CardBody, CardTitle, Container, Row, Col } from "reactstrap";
+import {useEffect, useState} from 'react'
+
+
+
+import Axios from 'axios'
 
 const Header = () => {
+
+  const[Count_category, setData] = useState([]);
+  const[Count_product, setProduct] = useState([]);
+  const[Count_sale, setSale] = useState([]);
+
+
+  useEffect(
+    ()=>{
+       Axios.get('http://crud-backend.test/api/count_category')
+       .then(function (response) {
+        console.log("get data from database ", response.data);
+        setData(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      Axios.get('http://crud-backend.test/api/count_product')
+      .then(function (res) {
+      console.log("get product from database ", res.data);
+      setProduct(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+      Axios.get('http://crud-backend.test/api/count_sale')
+      .then(function (res) {
+      console.log("get product from database ", res.data);
+      setSale(res.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+    },[]
+  )
+
   return (
     <>
       <div className="header bg-gradient-info pb-8 pt-5 pt-md-8">
@@ -27,7 +70,7 @@ const Header = () => {
           <div className="header-body">
             {/* Card stats */}
             <Row>
-              <Col lg="6" xl="3">
+              <Col lg="6" xl="4">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
                     <Row>
@@ -36,10 +79,10 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          Traffic
+                          Category
                         </CardTitle>
                         <span className="h2 font-weight-bold mb-0">
-                          350,897
+                          {Count_category}
                         </span>
                       </div>
                       <Col className="col-auto">
@@ -57,7 +100,7 @@ const Header = () => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              <Col lg="6" xl="4">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
                     <Row>
@@ -66,9 +109,9 @@ const Header = () => {
                           tag="h5"
                           className="text-uppercase text-muted mb-0"
                         >
-                          New users
+                          Product
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">2,356</span>
+                        <span className="h2 font-weight-bold mb-0">{Count_product}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-warning text-white rounded-circle shadow">
@@ -85,7 +128,7 @@ const Header = () => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              <Col lg="6" xl="4">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
                     <Row>
@@ -96,7 +139,7 @@ const Header = () => {
                         >
                           Sales
                         </CardTitle>
-                        <span className="h2 font-weight-bold mb-0">924</span>
+                        <span className="h2 font-weight-bold mb-0">{Count_sale}</span>
                       </div>
                       <Col className="col-auto">
                         <div className="icon icon-shape bg-yellow text-white rounded-circle shadow">
@@ -113,7 +156,7 @@ const Header = () => {
                   </CardBody>
                 </Card>
               </Col>
-              <Col lg="6" xl="3">
+              {/* <Col lg="6" xl="3">
                 <Card className="card-stats mb-4 mb-xl-0">
                   <CardBody>
                     <Row>
@@ -140,7 +183,7 @@ const Header = () => {
                     </p>
                   </CardBody>
                 </Card>
-              </Col>
+              </Col> */}
             </Row>
           </div>
         </Container>

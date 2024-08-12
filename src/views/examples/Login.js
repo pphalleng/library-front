@@ -41,7 +41,7 @@ const Login = () => {
             <div className="text-muted text-center mt-2 mb-3">
               <small>Sign in with</small>
             </div>
-            <div className="btn-wrapper text-center">
+            {/* <div className="btn-wrapper text-center">
               <Button
                 className="btn-neutral btn-icon"
                 color="default"
@@ -76,12 +76,12 @@ const Login = () => {
                 </span>
                 <span className="btn-inner--text">Google</span>
               </Button>
-            </div>
+            </div> */}
           </CardHeader>
           <CardBody className="px-lg-5 py-lg-5">
-            <div className="text-center text-muted mb-4">
+            {/* <div className="text-center text-muted mb-4">
               <small>Or sign in with credentials</small>
-            </div>
+            </div> */}
             <Form role="form">
               <FormGroup className="mb-3">
                 <InputGroup className="input-group-alternative">

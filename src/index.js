@@ -20,7 +20,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import CreateCategory from 'views/crud/CreateCategory.js';
 import CreateProduct from 'views/crud/CreateProduct.js';
-import CreateSale from 'views/crud/CreateSale.js';
+import CreateSale from 'views/crud/CreateLibrarian.js/';
 import UpdateLibrarain from 'views/crud/UpdateLibrarain.js';
 
 import "assets/plugins/nucleo/css/nucleo.css";

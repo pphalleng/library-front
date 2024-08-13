@@ -22,15 +22,13 @@ function ProjectEdit() {
         .then(function (response) {
             let librarain = response.data.result
 
-            const date = new Date(librarain.date_of_birth); // Or your date object
-            const formattedDate = date.toLocaleDateString('en-GB', {
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit',
-            });
+            // const date = new Date(librarain.date_of_birth); // Or your date object
+            // const formattedDate = date.toLocaleDateString('en-GB', {
+            //     year: 'numeric',
+            //     month: '2-digit',
+            //     day: '2-digit',
+            // });
 
-
-            
             setfirstName(librarain.first_name);
             setlastName(librarain.last_name);
             setEmail(librarain.email);
@@ -40,8 +38,9 @@ function ProjectEdit() {
             setCurrentAddress(librarain.current_address)
             
         })
-        .catch(err => console.log(err))
-        console.log(date_of_birth);
+
+        // .catch(err => console.log(err))
+        // console.log(date_of_birth);
           
     }, [])
   
@@ -68,7 +67,7 @@ function ProjectEdit() {
         })
         .catch(function (error) {
             Swal.fire({
-                 icon: 'error',
+                icon: 'error',
                 title: 'An Error Occured!',
                 showConfirmButton: false,
                 timer: 1500

@@ -52,7 +52,7 @@ import CustomeHeader from "components/Headers/CustomeHeader.js";
       Axios.post('http://localhost/api/librarains/create',inputData)
        .then(res => {
         alert("create category successfully");
-        navigat('/');
+        navigat('/admin/sales');
       }).catch(err => console.log(err))
 
     }

@@ -45,10 +45,10 @@ import {
       console.log("inputData");
       console.log(inputData);
 
-      Axios.post('http://crud-backend.test/api/membercard', inputData)
+      Axios.post('http://localhost/api/membershipCards', inputData)
        .then(res => {
         alert("Create MembershipCard successfully");
-        navigat('/');
+        navigat('/admin/MemberCardShip');
       }).catch(err => console.log(err))
 
     }
@@ -62,11 +62,11 @@ import {
                 <FormGroup className="mb-3">
                   <InputGroup className="input-group-alternative">
                     <Input
-                      placeholder="Name"
+                      placeholder="cardholder_name"
                       type="text"
-                      name="name"
-                      autoComplete="name"
-                      onChange={e =>setInputData({...inputData, name: e.target.value})}
+                      name="cardholder_name"
+                      autoComplete="cardholder_name"
+                      onChange={e =>setInputData({...inputData, cardholder_name: e.target.value})}
                     />
                   </InputGroup>
                 </FormGroup>
@@ -88,7 +88,7 @@ import {
                         type="date"
                         name="expired_date"
                         autoComplete="expired_date"
-                        onChange={e =>setInputData({...inputData, issued_date: e.target.value})}
+                        onChange={e =>setInputData({...inputData, expired_date: e.target.value})}
                       />
                     </InputGroup>
                   </FormGroup>
@@ -99,7 +99,7 @@ import {
                       type="text"
                       name="type"
                       autoComplete="type"
-                      onChange={e =>setInputData({...inputData, price: e.target.value})}
+                      onChange={e =>setInputData({...inputData, type: e.target.value})}
                     />
                   </InputGroup>
                 </FormGroup>

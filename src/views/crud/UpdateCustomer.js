@@ -7,7 +7,7 @@ import { format } from "date-fns";
 function CustomerEdit() {
     const [id, setId] = useState(useParams().id)
     
-    const [membercard_id, setMembershipCardId] = useState('');
+    const [membercard_id, setMembershipCardId] = useState(null);
     const [first_name, setFirstName] = useState('');
     const [last_name, setLastName] = useState('');
     const [age, setAge] = useState('');
@@ -19,16 +19,16 @@ function CustomerEdit() {
   
       
     useEffect(() => {
-        axios.get(`http://localhost/api/customers/${id}`)
+        axios.get(`http://localhost/api/customer/${id}`)
         .then(function (response) {
             let customer = response.data.result
 
-            // const date = new Date(customer.date_of_birth); // Or your date object
-            // const formattedDate = date.toLocaleDateString('en-GB', {
-            //     year: 'numeric',
-            //     month: '2-digit',
-            //     day: '2-digit',
-            // });
+            const date = new Date(customer.date_of_birth); // Or your date object
+            const formattedDate = date.toLocaleDateString('en-GB', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+            });
 
 
             setMembershipCardId(customer.membercard_id);
@@ -102,7 +102,7 @@ function CustomerEdit() {
                             <div className="form-group">
                                 <label htmlFor="name">First Name</label>
                                 <input 
-                                    onChange={(event)=>{setfirstName(event.target.value)}}
+                                    onChange={(event)=>{setFirstName(event.target.value)}}
                                     value={first_name}
                                     type="text"
                                     className="form-control"
@@ -112,7 +112,7 @@ function CustomerEdit() {
                             <div className="form-group">
                                 <label htmlFor="name">Last Name</label>
                                 <input 
-                                    onChange={(event)=>{setlastName(event.target.value)}}
+                                    onChange={(event)=>{setLastName(event.target.value)}}
                                     value={last_name}
                                     type="text"
                                     className="form-control"

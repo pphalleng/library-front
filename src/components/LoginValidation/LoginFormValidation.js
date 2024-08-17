@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-// import './LoginFormStyle.css'
+import Axios from 'axios'
+import { useNavigate } from "react-router-dom";
+import { useStateContext } from "../../contexts/ContextProvider"
 
 import {
   Button,
@@ -19,27 +21,40 @@ import {
 const LoginFormValidation = () => {
 
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: '',
-    confirmPassword: ''
   })
-
+  console.log(formData);
+  
+  
   const [errors, setErrors] = useState({})
+
+  const navigat = useNavigate();
 
   const handleChange = (e) => {
     const {name, value} = e.target;
     setFormData({
         ...formData, [name] : value
     })
+    
   }
 
+  const {setToken} = useStateContext();
   const handleSubmit = (e) => {
     e.preventDefault()
+    
+    Axios.post('http://localhost/api/login', 
+      formData,
+      {headers: {
+        'Content-Type': 'application/json'
+      }}
+    )
+    .then(res => {
+      setToken(res.data.token)
+      alert("Login successfully");
+      navigat('/admin/index');
+    }).catch(err => console.log(err))
     const validationErrors = {}
-    if(!formData.username.trim()) {
-        validationErrors.username = "username is required"
-    }
 
     if(!formData.email.trim()) {
         validationErrors.email = "email is required"
@@ -72,7 +87,7 @@ const LoginFormValidation = () => {
           <Card className="bg-secondary shadow border-0">
             <CardBody className="px-lg-5 py-lg-5">
             <h2>Please Login Your Account</h2>
-              <Form role="form mt-4" onSubmit={handleSubmit}>
+              <div role="form mt-4" onSubmit={handleSubmit}>
                 
                 {/* email */}
                 <FormGroup>
@@ -100,25 +115,13 @@ const LoginFormValidation = () => {
                        {errors.password && <span>{errors.password}</span>} 
                   </InputGroup>
                 </FormGroup>
-                
-                {/* confirm password */}
-                {/* <FormGroup>
-                  <InputGroup className="input-group-alternative">
-                    <Input
-                      type="password"
-                      name="confirmPassword"
-                      placeholder='******'
-                      onChange={handleChange}
-                    />
-                    {errors.confirmPassword && <span>{errors.confirmPassword}</span>}
-                  </InputGroup>
-                </FormGroup> */}
+              
                 <div className="text-center">
                   <Button className="my-4" color="primary" type="submit">
                     Done
                   </Button>
                 </div>
-              </Form>
+              </div>
             </CardBody>
           </Card>
         </Col>

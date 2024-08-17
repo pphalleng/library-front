@@ -51,11 +51,20 @@ const CreateMembershipCard = () => {
     console.log("inputData");
     console.log(inputData);
 
-    Axios.post("http://crud-backend.test/api/membercard", inputData)
+    const payload = {
+      cover_name: inputData.cover_name,
+      published_year: inputData.published_year,
+      category_type: inputData.category_type,
+      barcode: inputData.barcode,
+      // checkout bool
+      status: false,
+    }
+
+    Axios.post("http://localhost/api/books", payload)
       .then((res) => {
         alert("Create MembershipCard successfully");
-        navigat("/");
-      })
+        navigat("/admin/book");
+      })  
       .catch((err) => console.log(err));
   }
   return (
@@ -73,7 +82,7 @@ const CreateMembershipCard = () => {
                     name="cover_name"
                     autoComplete="cover_name"
                     onChange={(e) =>
-                      setInputData({ ...inputData, name: e.target.value })
+                      setInputData({ ...inputData, cover_name: e.target.value })
                     }
                   />
                 </InputGroup>
@@ -82,7 +91,7 @@ const CreateMembershipCard = () => {
                 <InputGroup className="input-group-alternative">
                   <Input
                     placeholder="Published year"
-                    type="date"
+                    type="text"
                     name="published_year"
                     autoComplete="published_year"
                     onChange={(e) =>
@@ -98,7 +107,7 @@ const CreateMembershipCard = () => {
                 <InputGroup className="input-group-alternative">
                   <Input
                     placeholder="Category_type"
-                    type="date"
+                    type="text"
                     name="category_type"
                     autoComplete="category_type"
                     onChange={(e) =>

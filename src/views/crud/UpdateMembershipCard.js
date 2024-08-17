@@ -74,7 +74,7 @@ function MembershipCardEdit() {
                     <div className="card-header">
                         <Link 
                             className="btn btn-outline-info float-right"
-                            to="/admin/sales">View All Membership Cards
+                            to="/admin/MemberCardShip">View All Membership Cards
                         </Link>
                     </div>
                     <div className="card-body">

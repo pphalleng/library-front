@@ -23,9 +23,11 @@ import Login from "views/examples/Login.js";
 import Tables from "views/examples/Tables.js";
 import Icons from "views/examples/Icons.js";
 import Librarians from "views/examples/Sale.js";
+import Books from "views/examples/Book.js";
 import Purchase from "views/examples/Purchase.js";
 import Product from "views/examples/Product.js";
-import Category from "views/examples/Category.js";
+import MemberCardShip from "views/examples/MemberCardShip";  
+import Cusomer from "views/examples/Cusomer.js";
 
 
 
@@ -47,19 +49,33 @@ var routes = [
     layout: "/admin",
   },
   {
-    path: "/product", 
-    name: "Product",
+    path: "/book", 
+    name: "Books",
     icon: "ni ni-bag-17 text-green",
-    component: <Product />,
+    component: <Books />,
     layout: "/admin",
   },
   {
-    path: "/category",
-    name: "Category",
+    path: "/MemberCardShip",
+    name: "MemberCardShip",
     icon: "ni ni-cart text-orange",
-    component: <Category />,
+    component: <MemberCardShip />,
     layout: "/admin",
   },
+  {
+    path: "/Cusomer",
+    name: "Cusomer",
+    icon: "ni ni-shop text-green",
+    component: <Cusomer />,
+    layout: "/admin",
+  },
+  // {
+  //   path: "/book", 
+  //   name: "Books",
+  //   icon: "ni ni-bag-17 text-green",
+  //   component: <Books />,
+  //   layout: "/admin",
+  // },
   // {
   //   path: "/user-profile",
   //   name: "User Profile",

@@ -50,7 +50,7 @@ const Tables = () => {
 
   useEffect(
     ()=>{
-       Axios.get('http://localhost/api/librarains/get')
+       Axios.get('http://localhost/api/membershipCards')
        .then(function (response) {
         console.log("get data from database ", response.data);
         setData(response.data);
@@ -78,23 +78,20 @@ const Tables = () => {
   
 
   const category_arr = data.map((data, index) => {
-    console.log("index" + index);
+    console.log("index" + data);
     
     return (
       <tr>
         <td>
           <Media>
             <span className="mb-0 text-sm">
-              {data.first_name}
+              {data.cardholder_name}
             </span>
           </Media>
         </td>
-        <td>{data.last_name}</td>
-        <td>{data.email}</td>
-        <td>{data.nid}</td>
-        <td>{data.age}</td>
-        <td>{data.date_of_birth}</td>
-        <td>{data.current_address}</td>
+        <td>{data.issued_date}</td>
+        <td>{data.expired_date}</td>
+        <td>{data.type}</td>
 
         <td className="text-right">
           <UncontrolledDropdown>
@@ -115,7 +112,7 @@ const Tables = () => {
                 Show
               </DropdownItem>
               <DropdownItem
-                to={"/admin/edit-librarian/" + data.id} tag={Link}
+                to={"/admin/edit-membercardship/" + data.id} tag={Link}
               >
                 Edit
               </DropdownItem>
@@ -142,23 +139,20 @@ const Tables = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">List all Librarians record</h3>
+                <h3 className="mb-0">List all MemberCardShip record</h3>
                 <div className="col text-right">
                 <div className="col text-right">
-                  <Link to="/admin/create-librarian" className="btn btn-primay">Create Librarian</Link>
+                  <Link to="/admin/create-membercardship" className="btn btn-primay">Create MemberCardShip</Link>
                 </div>
                   </div>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">First Name</th>
-                    <th scope="col">Last Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">National ID Card</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Date of Birth</th>
-                    <th scope="col">Current Address</th>
+                    <th scope="col">Card Name</th>
+                    <th scope="col">Issue Date</th>
+                    <th scope="col">Expred Date </th>
+                    <th scope="col">Type</th>
                     <th scope="col" />
                   </tr>
                 </thead>

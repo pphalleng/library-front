@@ -230,6 +230,7 @@ const Sidebar = (props) => {
           </Form>
           {/* Navigation */}
           <Nav navbar>{createLinks(routes)}</Nav>
+          
           {/* Divider */}
           <hr className="my-3" />
           {/* Heading */}

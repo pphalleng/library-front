@@ -17,9 +17,10 @@
 */
 
 // reactstrap components
-import { useState } from "react";
+// import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Axios from "axios";
+import {useEffect, useState} from 'react'
 
 import {
   Button,
@@ -51,6 +52,20 @@ const CreateLibrarian = () => {
     nid: "",
     current_address: "",
   });
+  // format string to in string keys
+
+  const payload = {
+    membership_card_id: parseInt(inputData.membership_card_id),
+    first_name: inputData.first_name,
+    last_name: inputData.last_name,
+    age: inputData.age,
+    date_of_birth: inputData.date_of_birth,
+    nid: inputData.nid,
+    current_address: inputData.current_address
+  }
+
+  const[MBCS, getData] = useState([]);
+
   const navigat = useNavigate();
 
   function handleSubmit(event) {
@@ -58,13 +73,25 @@ const CreateLibrarian = () => {
     console.log("inputData");
     console.log(inputData);
 
-    Axios.post("http://localhost/api/librarains/create", inputData)
+    Axios.post("http://localhost/api/create-customers", payload)
       .then((res) => {
         alert("create category successfully");
-        navigat("/");
+        navigat("/admin/Cusomer");
       })
       .catch((err) => console.log(err));
   }
+  useEffect(
+    ()=>{
+      Axios.get('http://localhost/api/membershipCards/list')
+      .then(function (response) {
+       console.log("get data from database member", response.data);
+       getData(response.data);
+     })
+     .catch(function (error) {
+       console.log(error);
+     });
+    },[])
+    
   return (
     <>
       <CustomeHeader />
@@ -80,15 +107,24 @@ const CreateLibrarian = () => {
                     <select
                       placeholder="Membership Card Id"
                       type="text"
-                      name="card_id"
-                      autoComplete="card_id"
+                      name="membership_card_id"
+                      autoComplete="membership_card_id"
                       onChange={(e) =>
                         setInputData({
                           ...inputData,
-                          first_name: e.target.value,
+                          membership_card_id: e.target.value,
                         })
                       }
-                    ></select>
+                    >
+                <option value="">
+                  Select any Related Membership Card
+                </option>
+                {MBCS.map((r) => (
+                  <option key={r.id} value={r.id}>
+                    {r.cardholder_name}
+                  </option>
+                ))}
+                    </select>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup className="mb-3">

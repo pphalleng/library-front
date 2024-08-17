@@ -47,7 +47,7 @@ function BookEdit() {
             published_year: published_year,
             category_type: category_type,
             barcode: barcode,
-            status: status
+            status:  "true" ? true : false
         })
         .then(function (response) {
             Swal.fire({
@@ -77,7 +77,7 @@ function BookEdit() {
                     <div className="card-header">
                         <Link 
                             className="btn btn-outline-info float-right"
-                            to="/admin/sales">View All Books
+                            to="/admin/book">View All Books
                         </Link>
                     </div>
                     <div className="card-body">
